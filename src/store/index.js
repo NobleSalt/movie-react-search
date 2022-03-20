@@ -6,7 +6,6 @@ export const ApiContext = createContext()
 
 
 export default function ApiProvider({ children }) {
-    const {api_key} = process.env
 
     const [search, setSearch] = useState('demo')
     const [isLoading, setIsLoading] = useState(false)
