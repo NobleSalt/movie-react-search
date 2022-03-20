@@ -3,10 +3,17 @@ import ReactDOM from 'react-dom';
 import './index.css';
 import App from './App';
 import reportWebVitals from './reportWebVitals';
+import { ChakraProvider } from '@chakra-ui/react';
+import { theme } from './extendTheme'
+import ApiProvider from './store'
 
 ReactDOM.render(
   <React.StrictMode>
-    <App />
+    <ApiProvider>
+      <ChakraProvider theme={theme}>
+        <App />
+      </ChakraProvider>
+    </ApiProvider>
   </React.StrictMode>,
   document.getElementById('root')
 );
