@@ -13,26 +13,26 @@ export default function ApiProvider({ children }) {
 
 
     useEffect(() => {
+        const handleSearch = async () => {
+            setIsLoading(true)
+            console.log('Searching ...')
+            await axios.get(`https://www.omdbapi.com/?s=${search}&apikey=fdbee485`)
+                .then(res => res.data)
+                .then(response => {
+                    if (response.Search) {
+                        setMovies(response.Search)
+                        console.log(response.Search || 'none')
+                        setIsLoading(false)
+                        console.log('done ...')
+                    }
+                })
+                .catch(e => {
+                    throw Error(e)
+                })
+        }
         handleSearch()
     }, [search])
 
-    const handleSearch = async () => {
-        setIsLoading(true)
-        console.log('Searching ...')
-        await axios.get(`https://www.omdbapi.com/?s=${search}&apikey=fdbee485`)
-            .then(res => res.data)
-            .then(response => {
-                if (response.Search) {
-                    setMovies(response.Search)
-                    console.log(response.Search || 'none')
-                    setIsLoading(false)
-                    console.log('done ...')
-                }
-            })
-            .catch(e => {
-                throw Error(e)
-            })
-    }
 
 
     return (
